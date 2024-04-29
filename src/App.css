@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+
+.circle{
+    @apply absolute inset-0 rounded-full bg-blueMain transition-all duration-500;
+}
+
+.circle.active{
+    @apply opacity-0;
+}
+
+.player{
+    @apply p-4 relative rounded-xl bg-grayMain flex items-center justify-between transition-all duration-500 text-slate-500;
+}
+
+.player::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-99%);
+    width: 2.5rem;
+    height: 1rem;
+    clip-path: polygon( 50% 0, 100% 100%, 0 100%);
+    background-color: #FDA214;
+    opacity: 0;
+}
+
+.player p{
+    @apply font-bold;
+}
+.player span{
+    @apply font-bold text-2xl inline-block text-slate-800;
+}
+
+.player.active{
+    @apply bg-YellowMain text-white;
+}
+
+.player.active span{
+    @apply text-white;
+}
+.player.active::after{
+    opacity: 1;
+}
