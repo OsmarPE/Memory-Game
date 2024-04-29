@@ -76,19 +76,26 @@ function App() {
   useEffect(() => {
     if (cardAnswer.length <= 14) {
       if (player === 0) {
-
-
+        
         setTimeout(() => {
-          const i = generatePlayPC(cards, cardAnswer, [v1, v2, v3])
-          setValues(i)
 
+          if (([v1,v2,v3].includes(''))) {
+            console.log([v1,v2,v3].includes(''));
+  
+            const i = generatePlayPC(cards, cardAnswer, [v1, v2, v3])
+            console.log(i);
+            setValues(i)
+          }
+          
         }, 800);
+
       }
     } else {
       console.log('JUEGO TERMINADO');
 
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardAnswer, v1, v2, v3])
 
 

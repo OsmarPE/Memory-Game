@@ -91,7 +91,7 @@ export function generatePlayPC(cardCurrent: cardType[], cardBefore: cardType[],a
        const newIndex = cardBefore.findIndex(card => card.movie === cardCurrent[randomIndex].movie)
         if (newIndex === -1) {
             if (!(attempsPC.includes(randomIndex))) {
-                if (randomBase === 2 && attempsPC[0] !== '' ) {
+                if ((randomBase === 2 || randomBase === 1) && attempsPC[0] !== '' ) {
                     console.log(attempsPC);
                     
                   const i = cardCurrent.findIndex((card,index) => (card.movie === cardCurrent[attempsPC[0] as number].movie && index !== attempsPC[0] )  )
