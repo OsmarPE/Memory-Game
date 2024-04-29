@@ -6,13 +6,16 @@ import { cards as CardsCurrent, generatePlayPC, generateRandomCards, isValuesSuc
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { cardType, playerType } from './types';
 import Players from './components/Players';
+import Modal from './components/Modal'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
+const cardsI = [...CardsCurrent]
 
-function App() {
-
+function App() {  
 
   const [cards, setCards] = useState<cardType[]>(() => generateRandomCards(CardsCurrent))
   const [cardAnswer, setCardAnswer] = useState<cardType[]>([])
+  const [instruction, setInstruction] = useState<boolean>(false)
 
   const [player, setPlayer] = useState<playerType>(1);
   // const [attempsPC, setAttempsPC] = useState<number[]>([])
@@ -59,6 +62,7 @@ function App() {
         }
 
       }
+
       setV1('')
       setV2('')
       setV3('')
@@ -80,9 +84,9 @@ function App() {
 
         }, 800);
       }
-    }else{
+    } else {
       console.log('JUEGO TERMINADO');
-      
+
     }
 
   }, [cardAnswer, v1, v2, v3])
@@ -92,11 +96,11 @@ function App() {
     if (cardAnswer.findIndex(cardAns => cardAns.movie === cards[index].movie) !== -1) return true
     return [v1, v2, v3].includes(index)
   }
-
+  
 
   return (
     <div>
-      <Header setCards={setCards} />
+      <Header setCards={setCards} setInstruction={setInstruction} />
       <div className='max-w-2xl mx-auto mt-4 grid gap-5 grid-cols-5'>
         {
           CardsCurrent.map(({ icon, movie }, index) => (
@@ -109,6 +113,30 @@ function App() {
         }
       </div>
       <Players player={player} pointsP1={pointsP1} pointsP2={pointsP2} />
+
+      <Modal modal={instruction} setModal={setInstruction} >
+        <div className=''>
+          <h2 className='text-2xl font-bold text-blueMain'>Instrucciones</h2>
+          <p className='leading-5 text-slate-400 mt-2 mb-8'>Para poder ganar un punto en el memorama, debes complir con el siguiente stack de cartas:</p>
+          <div className='grid gap-4 grid-cols-[repeat(4,max-content)] items-center'>
+            {
+              cardsI.map(({icon,movie},index) => {
+
+                return(
+                  <>
+                    <div className=' size-14 text-sm flex items-center justify-center text-white bg-blueMain rounded-full'>
+                      <FontAwesomeIcon icon={icon} />
+                    </div>
+                    {
+                      (index + 1) % 3 === 0 && <p className='font-semibold capitalize text-slate-800'> <FontAwesomeIcon icon={faArrowRight} className='mr-4' /> {movie}</p> 
+                    }
+                  </>
+                )
+            })
+            }
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }

@@ -1,12 +1,12 @@
 import {  cardType } from "../types";
-import { faTrophy,faCrow,faBold ,faCar, faPaw,faTree, faSpider, faPerson, faAtom, faGlasses, faWandMagic,faBookQuran,
+import { faTrophy,faCrow,faBolt ,faCar, faPaw,faTree, faSpider, faPerson, faAtom, faGlasses, faWandMagic,faBookQuran,
     faHome,faCircleUp,faCloud, faFish, faSearch, faWater
 } from '@fortawesome/free-solid-svg-icons'
 
 export const cards:cardType[] = [
     {
         movie:'cars',
-        icon:faBold
+        icon:faBolt
     },
     {
         movie:'cars',
@@ -66,6 +66,8 @@ export const cards:cardType[] = [
     },
 ];
 
+
+// export const cardsI:cardType[] = [...cards]
   
 export function generateRandomCards(array: cardType[]) {
     return array.sort(() => Math.random() - 0.5);
