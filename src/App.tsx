@@ -103,7 +103,7 @@ function App() {
             <button disabled={verifyIndex(index)} onClick={() => setValues(index)} key={index} className='relative w-full aspect-square text-3xl flex items-center justify-center text-white bg-grayMain200 rounded-full'>
               <FontAwesomeIcon icon={icon} />
               <div className={verifyIndex(index) ? 'circle active' : 'circle'}></div>
-              <div className='absolute left-8 top-50% text-sm'>{movie}</div>
+              {/* <div className='absolute left-8 top-50% text-sm'>{movie}</div> */}
             </button>
           ))
         }
