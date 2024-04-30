@@ -1,31 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 .circle{
-    @apply absolute inset-0 rounded-full bg-blueMain transition-all duration-500;
+    @apply absolute scale-100 inset-0 rounded-full bg-grayMain transition-all duration-500;
 }
 
 .circle.active{
-    @apply opacity-0;
+    @apply scale-0;
 }
 
 .player{
-    @apply p-4 relative rounded-xl bg-grayMain flex items-center justify-between transition-all duration-500 text-slate-500;
+    @apply p-4 relative border-black border-2 shadow-main200 rounded-xl bg-grayMain flex flex-col md:flex-row items-center md:justify-between gap-1 transition-all duration-500 text-black;
 }
 
-.player::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%,-99%);
-    width: 2.5rem;
-    height: 1rem;
-    clip-path: polygon( 50% 0, 100% 100%, 0 100%);
-    background-color: #FDA214;
-    opacity: 0;
-}
 
 .player p{
     @apply font-bold;
@@ -35,12 +21,14 @@
 }
 
 .player.active{
-    @apply bg-YellowMain text-white;
+    @apply bg-YellowMain ;
 }
 
-.player.active span{
-    @apply text-white;
+
+.msg{
+    @apply text-center mt-6 font-bold text-grayMain opacity-0 translate-y-3 transition-all duration-500;
 }
-.player.active::after{
-    opacity: 1;
+
+.msg.active{
+    @apply opacity-100 translate-y-0 ;
 }

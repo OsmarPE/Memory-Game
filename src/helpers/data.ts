@@ -66,6 +66,68 @@ export const cards:cardType[] = [
     },
 ];
 
+export const cardsI:cardType[] = [
+    {
+        movie:'cars',
+        icon:faBolt
+    },
+    {
+        movie:'cars',
+        icon:faCar
+    },
+    {
+        movie:'cars',
+        icon:faTrophy
+    },
+    {
+        movie:'spiderman',
+        icon:faSpider
+    },
+    {
+        movie:'spiderman',
+        icon:faPerson
+    },
+    {
+        movie:'spiderman',
+        icon:faAtom
+    },
+    {
+        movie:'harry',
+        icon:faGlasses
+    },
+    {
+        movie:'harry',
+        icon:faWandMagic
+    },
+    {
+        movie:'harry',
+        icon:faBookQuran
+    },
+    {
+        movie:'up',
+        icon:faHome
+    },
+    {
+        movie:'up',
+        icon:faCircleUp
+    },
+    {
+        movie:'up',
+        icon:faCloud
+    },
+    {
+        movie:'nemo',
+        icon:faSearch
+    },
+    {
+        movie:'nemo',
+        icon:faFish
+    },
+    {
+        movie:'nemo',
+        icon:faWater
+    },
+];
 
 // export const cardsI:cardType[] = [...cards]
   
@@ -84,7 +146,7 @@ export function isValuesSuccess(v1:number | '',v2:number | '',v3:number | '', ca
 export function generatePlayPC(cardCurrent: cardType[], cardBefore: cardType[],attempsPC:(number | string)[]):number {
     let isFound = false;
     let indexR = 0
-    const randomBase = Math.round(Math.random()* 3);
+    const randomBase = Math.round(Math.random()* 4);
 
     while (!isFound) {
        const randomIndex = Math.round(Math.random() * 14);
@@ -95,7 +157,7 @@ export function generatePlayPC(cardCurrent: cardType[], cardBefore: cardType[],a
                     console.log(attempsPC);
                     
                   const i = cardCurrent.findIndex((card,index) => (card.movie === cardCurrent[attempsPC[0] as number].movie && index !== attempsPC[0] )  )
-                  console.log(i);
+                
                     
                   indexR = i
                 }else{

@@ -7,13 +7,17 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        primary:["Atkinson Hyperlegible"," sans-serif"]
+        primary:["Outfit"," sans-serif"]
       },
       colors:{
-        blueMain:'#304859',
-        YellowMain:'#FDA214',
-        grayMain:'#DFE7EC',
-        grayMain200:'#BCCED9',
+        YellowMain:'#FFCE67',
+        grayMain:'#F0F0F0',
+        purpleMain:'#7945FF',
+        purpleMain200:'#5C2DD5'
+      },
+      boxShadow:{
+        main:'0 4px 0 #000',
+        main200:'0 5px 0 #000',
       }
     },
   },

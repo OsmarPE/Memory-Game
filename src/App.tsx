@@ -2,20 +2,24 @@ import { useEffect, useState } from 'react'
 import 'font-awesome/css/font-awesome.min.css';
 import './App.css'
 import Header from './components/Header'
-import { cards as CardsCurrent, generatePlayPC, generateRandomCards, isValuesSuccess } from './helpers/data';
+import { cards as CardsCurrent, generatePlayPC, generateRandomCards, isValuesSuccess, cardsI } from './helpers/data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { cardType, playerType } from './types';
 import Players from './components/Players';
 import Modal from './components/Modal'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Card from './components/Card';
+import Notify from './components/Notify';
+import Instructions from './components/Instructions';
 
-const cardsI = [...CardsCurrent]
 
-function App() {  
+
+function App() {
 
   const [cards, setCards] = useState<cardType[]>(() => generateRandomCards(CardsCurrent))
   const [cardAnswer, setCardAnswer] = useState<cardType[]>([])
   const [instruction, setInstruction] = useState<boolean>(false)
+  const [EndGame, setEndGame] = useState<boolean>(false)
 
   const [player, setPlayer] = useState<playerType>(1);
   // const [attempsPC, setAttempsPC] = useState<number[]>([])
@@ -31,6 +35,18 @@ function App() {
   const setNewItemsToCard = (v1: number, v2: number, v3: number) => {
     const newCards: cardType[] = [...cardAnswer, cards[v1], cards[v2], cards[v3]]
     setCardAnswer(newCards)
+  }
+
+  function resetGame() {
+    setV1('')
+    setV2('')
+    setV3('')
+    setPointsP1(0)
+    setPointsP2(0)
+    setPlayer(1)
+    setCardAnswer([])
+    setCards(() => generateRandomCards(CardsCurrent))
+    setEndGame(false)
   }
 
 
@@ -76,26 +92,24 @@ function App() {
   useEffect(() => {
     if (cardAnswer.length <= 14) {
       if (player === 0) {
-        
+
         setTimeout(() => {
 
-          if (([v1,v2,v3].includes(''))) {
-            console.log([v1,v2,v3].includes(''));
-  
+          if (([v1, v2, v3].includes(''))) {
+
             const i = generatePlayPC(cards, cardAnswer, [v1, v2, v3])
-            console.log(i);
+
             setValues(i)
           }
-          
-        }, 800);
+
+        }, 1500);
 
       }
     } else {
-      console.log('JUEGO TERMINADO');
-
+      setEndGame(true)
     }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardAnswer, v1, v2, v3])
 
 
@@ -103,46 +117,33 @@ function App() {
     if (cardAnswer.findIndex(cardAns => cardAns.movie === cards[index].movie) !== -1) return true
     return [v1, v2, v3].includes(index)
   }
-  
+
 
   return (
     <div>
-      <Header setCards={setCards} setInstruction={setInstruction} />
-      <div className='max-w-2xl mx-auto mt-4 grid gap-5 grid-cols-5'>
+      <Header setCards={setCards} setInstruction={setInstruction} resetGame={resetGame} />
+      <div className='max-w-2xl w-[90%] mx-auto mt-4 grid gap-4 md:gap-5 grid-cols-4 md:grid-cols-5'>
         {
-          CardsCurrent.map(({ icon, movie }, index) => (
-            <button disabled={verifyIndex(index)} onClick={() => setValues(index)} key={index} className='relative w-full aspect-square text-3xl flex items-center justify-center text-white bg-grayMain200 rounded-full'>
-              <FontAwesomeIcon icon={icon} />
-              <div className={verifyIndex(index) ? 'circle active' : 'circle'}></div>
-              {/* <div className='absolute left-8 top-50% text-sm'>{movie}</div> */}
-            </button>
-          ))
+          CardsCurrent.map(({ icon }, index) => (
+            <Card
+              key={index}
+              icon={icon}
+              player={player}
+              index={index}
+              setValues={setValues}
+              verifyIndex={verifyIndex}
+            />))
         }
       </div>
       <Players player={player} pointsP1={pointsP1} pointsP2={pointsP2} />
-
+      <div>
+        <p className={player === 0 ? 'msg active' : 'msg'}>Tu oponente esta pensando...</p>
+      </div>
       <Modal modal={instruction} setModal={setInstruction} >
-        <div className=''>
-          <h2 className='text-2xl font-bold text-blueMain'>Instrucciones</h2>
-          <p className='leading-5 text-slate-400 mt-2 mb-8'>Para poder ganar un punto en el memorama, debes complir con el siguiente stack de cartas:</p>
-          <div className='grid gap-4 grid-cols-[repeat(4,max-content)] items-center'>
-            {
-              cardsI.map(({icon,movie},index) => {
-
-                return(
-                  <>
-                    <div className=' size-14 text-sm flex items-center justify-center text-white bg-blueMain rounded-full'>
-                      <FontAwesomeIcon icon={icon} />
-                    </div>
-                    {
-                      (index + 1) % 3 === 0 && <p className='font-semibold capitalize text-slate-800'> <FontAwesomeIcon icon={faArrowRight} className='mr-4' /> {movie}</p> 
-                    }
-                  </>
-                )
-            })
-            }
-          </div>
-        </div>
+        <Instructions cardsI={cardsI} />
+      </Modal>
+      <Modal setModal={setEndGame} modal={EndGame}>
+        <Notify pointsP1={pointsP1} pointsP2={pointsP2} resetGame={resetGame} />
       </Modal>
     </div>
   )

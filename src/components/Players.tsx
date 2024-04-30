@@ -10,9 +10,9 @@ interface Props{
 export default function Players({player,pointsP1, pointsP2}:Props) {
 
   return (
-    <div className="grid gap-4 grid-cols-2 max-w-xl mx-auto mt-16">
+    <div className="grid gap-4 grid-cols-2 max-w-xl mx-auto mt-16 w-[90%]">
         <div className={player === 1 ? 'player active' : 'player' }>
-            <p>Jugador</p>
+            <p>Tu Turno</p>
             <span className="">{pointsP1}</span>
         </div>
         <div className={player === 0 ? 'player active' : 'player' } >

@@ -4,10 +4,14 @@ import CloseIcon from '../assets/CloseIcon'
 interface Props{
   children:ReactNode,
   modal:boolean,
-  setModal:(v:boolean) => void
+  setModal:(v:boolean) => void,
+  type?: 'xl'
 }
 
-export default function ExpenseModal({children, modal, setModal}:Props) {
+export default function ExpenseModal({children, modal, setModal, type}:Props) {
+
+  const maxWidth = type === 'xl' ? 'max-w-xl w-[90%]' : 'w-full'
+
   return (
     <>
   
@@ -27,7 +31,7 @@ export default function ExpenseModal({children, modal, setModal}:Props) {
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <div className="flex min-h-full items-center justify-center text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -37,9 +41,9 @@ export default function ExpenseModal({children, modal, setModal}:Props) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-[90%] max-w-xl transform overflow-hidden rounded-xl bg-white p-7 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className={`${maxWidth} transform overflow-hidden shadow-xl transition-all`}>
                    <div className='relative'>
-                        <button className='absolute top-0 right-2' onClick={() => setModal(false)}> <CloseIcon width={22}/> </button>
+                        {/* <button className='absolute top-0 right-2' onClick={() => setModal(false)}> <CloseIcon width={22}/> </button> */}
                         {children}
                    </div>
                 </Dialog.Panel>
