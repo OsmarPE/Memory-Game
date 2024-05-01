@@ -1,6 +1,5 @@
 import { Fragment, ReactNode } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import CloseIcon from '../assets/CloseIcon'
 interface Props{
   children:ReactNode,
   modal:boolean,
