@@ -3,14 +3,13 @@ import 'font-awesome/css/font-awesome.min.css';
 import './App.css'
 import Header from './components/Header'
 import { cards as CardsCurrent, generatePlayPC, generateRandomCards, isValuesSuccess, cardsI } from './helpers/data';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { cardType, playerType } from './types';
 import Players from './components/Players';
 import Modal from './components/Modal'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Card from './components/Card';
 import Notify from './components/Notify';
 import Instructions from './components/Instructions';
+
 
 
 
@@ -90,7 +89,7 @@ function App() {
   }
 
   useEffect(() => {
-    if (cardAnswer.length <= 14) {
+    if (cardAnswer.length <= cards.length - 1 ) {
       if (player === 0) {
 
         setTimeout(() => {
@@ -121,8 +120,8 @@ function App() {
 
   return (
     <div>
-      <Header setCards={setCards} setInstruction={setInstruction} resetGame={resetGame} />
-      <div className='max-w-2xl w-[90%] mx-auto mt-4 grid gap-4 md:gap-5 grid-cols-4 md:grid-cols-5'>
+      <Header setInstruction={setInstruction} resetGame={resetGame} />
+      <div className='max-w-2xl w-[90%] mx-auto mt-4 grid gap-4 md:gap-5 grid-cols-4 md:grid-cols-6'>
         {
           CardsCurrent.map(({ icon }, index) => (
             <Card

@@ -1,3 +1,4 @@
+import { Confetti } from "../helpers/Confetti"
 
 interface Props{
     pointsP1:number,
@@ -6,6 +7,12 @@ interface Props{
 }
 
 export default function Notify({pointsP1,pointsP2,resetGame}:Props) {
+
+    if (pointsP1 > pointsP2) {
+        Confetti()
+        
+    }
+
     return (
         <div className='text-center bg-purpleMain py-10 text-grayMain'>
             <div>

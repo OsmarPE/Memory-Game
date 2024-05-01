@@ -1,6 +1,7 @@
 import {  cardType } from "../types";
-import { faTrophy,faCrow,faBolt ,faCar, faPaw,faTree, faSpider, faPerson, faAtom, faGlasses, faWandMagic,faBookQuran,
-    faHome,faCircleUp,faCloud, faFish, faSearch, faWater
+import { faTrophy,faBolt ,faCar, faSpider, faPerson, faAtom, faGlasses, faWandMagic,faBookQuran,
+    faHome,faCircleUp,faCloud, faFish, faSearch, faWater,faGuitar,faSchool,faHandPeace, faDog,faMoneyBillTrendUp,faDollarSign,
+    faCloudRain,faBurger,faUtensils
 } from '@fortawesome/free-solid-svg-icons'
 
 export const cards:cardType[] = [
@@ -29,15 +30,15 @@ export const cards:cardType[] = [
         icon:faAtom
     },
     {
-        movie:'harry',
+        movie:'harry potter',
         icon:faGlasses
     },
     {
-        movie:'harry',
+        movie:'harry potter',
         icon:faWandMagic
     },
     {
-        movie:'harry',
+        movie:'harry potter',
         icon:faBookQuran
     },
     {
@@ -63,6 +64,42 @@ export const cards:cardType[] = [
     {
         movie:'nemo',
         icon:faWater
+    },
+    {
+        movie:'camp rock',
+        icon:faGuitar
+    },
+    {
+        movie:'camp rock',
+        icon:faHandPeace
+    },
+    {
+        movie:'camp rock',
+        icon:faSchool
+    },
+    {
+        movie:'el lobo de wall street',
+        icon:faMoneyBillTrendUp
+    },
+    {
+        movie:'el lobo de wall street',
+        icon:faDollarSign
+    },
+    {
+        movie:'el lobo de wall street',
+        icon:faDog
+    },
+    {
+        movie:'lluvia de hamburguesa',
+        icon:faUtensils
+    },
+    {
+        movie:'lluvia de hamburguesa',
+        icon:faBurger
+    },
+    {
+        movie:'lluvia de hamburguesa',
+        icon:faCloudRain
     },
 ];
 
@@ -92,15 +129,15 @@ export const cardsI:cardType[] = [
         icon:faAtom
     },
     {
-        movie:'harry',
+        movie:'harry potter',
         icon:faGlasses
     },
     {
-        movie:'harry',
+        movie:'harry potter',
         icon:faWandMagic
     },
     {
-        movie:'harry',
+        movie:'harry potter',
         icon:faBookQuran
     },
     {
@@ -127,6 +164,42 @@ export const cardsI:cardType[] = [
         movie:'nemo',
         icon:faWater
     },
+    {
+        movie:'camp rock',
+        icon:faGuitar
+    },
+    {
+        movie:'camp rock',
+        icon:faHandPeace
+    },
+    {
+        movie:'camp rock',
+        icon:faSchool
+    },
+    {
+        movie:'el lobo de wall street',
+        icon:faMoneyBillTrendUp
+    },
+    {
+        movie:'el lobo de wall street',
+        icon:faDollarSign
+    },
+    {
+        movie:'el lobo de wall street',
+        icon:faDog
+    },
+    {
+        movie:'lluvia de hamburguesa',
+        icon:faUtensils
+    },
+    {
+        movie:'lluvia de hamburguesa',
+        icon:faBurger
+    },
+    {
+        movie:'lluvia de hamburguesa',
+        icon:faCloudRain
+    },
 ];
 
 // export const cardsI:cardType[] = [...cards]
@@ -140,26 +213,31 @@ export function isValuesSuccess(v1:number | '',v2:number | '',v3:number | '', ca
         return false
     }
 
+    console.log(cards);
+    console.log(v1);
+    console.log(v2);
+    console.log(v3);
+    
+
     return [cards[v1].movie, cards[v2].movie, cards[v3].movie ].every(value => value === cards[v1].movie )
 }
 
 export function generatePlayPC(cardCurrent: cardType[], cardBefore: cardType[],attempsPC:(number | string)[]):number {
     let isFound = false;
     let indexR = 0
-    const randomBase = Math.round(Math.random()* 4);
+    const randomBase = Math.round(Math.random()* 6);
 
     while (!isFound) {
-       const randomIndex = Math.round(Math.random() * 14);
+       const randomIndex = Math.round(Math.random() * (cardCurrent.length - 1) );
        const newIndex = cardBefore.findIndex(card => card.movie === cardCurrent[randomIndex].movie)
         if (newIndex === -1) {
             if (!(attempsPC.includes(randomIndex))) {
                 if ((randomBase === 2 || randomBase === 1) && attempsPC[0] !== '' ) {
-                    console.log(attempsPC);
-                    
-                  const i = cardCurrent.findIndex((card,index) => (card.movie === cardCurrent[attempsPC[0] as number].movie && index !== attempsPC[0] )  )
                 
+                  const i = cardCurrent.findIndex((card,index) => (card.movie === cardCurrent[attempsPC[0] as number].movie && index !== attempsPC[0] )  ) 
                     
                   indexR = i
+                  
                 }else{
                     indexR = randomIndex
                 }
