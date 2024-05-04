@@ -1,9 +1,9 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { playerType } from "../types"
+import { playerType, validateProps } from "../types"
 
 interface Props{
-    verifyIndex:(index:number) => boolean,
+    verifyIndex:(index:number) => validateProps,
     setValues:(index:number) => void,
     index:number,
     icon:IconProp,
@@ -11,10 +11,14 @@ interface Props{
 }
 
 export default function Card({verifyIndex,index,setValues,icon,player}:Props) {
+    
+
+    const verify:validateProps =  verifyIndex(index);
+
     return (
-        <button disabled={player === 0 ? true : verifyIndex(index)} onClick={() => setValues(index)} key={index} className='relative border-2 border-black w-full aspect-square text-2xl flex items-center justify-center text-white shadow-main200 bg-purpleMain200 rounded-full'>
+        <button disabled={player === 0 ? true : verify.isActive} onClick={() => setValues(index)} key={index} className={verify.name === 'completed' ? 'card completed': 'card base'}>
             <FontAwesomeIcon icon={icon} />
-            <div className={verifyIndex(index) ? 'circle active' : 'circle'}></div>
+            <div className={verify.isActive ? 'circle active' : 'circle'}></div>
             {/* <div className='absolute left-8 top-50% text-sm'>{movie}</div> */}
         </button>
     )

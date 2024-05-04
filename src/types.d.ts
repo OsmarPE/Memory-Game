@@ -12,3 +12,12 @@ export interface cardType {
 export interface valuesType extends moviesType{
     index:number
 }
+
+export interface cardTypeC extends cardType{
+    active:boolean
+}
+
+export interface validateProps {
+    name:'completed' | 'pending',
+    isActive: boolean
+  } 

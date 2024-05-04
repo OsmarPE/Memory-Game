@@ -1,8 +1,133 @@
-import {  cardType } from "../types";
+import {  cardType, cardTypeC } from "../types";
 import { faTrophy,faBolt ,faCar, faSpider, faPerson, faAtom, faGlasses, faWandMagic,faBookQuran,
     faHome,faCircleUp,faCloud, faFish, faSearch, faWater,faGuitar,faSchool,faHandPeace, faDog,faMoneyBillTrendUp,faDollarSign,
     faCloudRain,faBurger,faUtensils
 } from '@fortawesome/free-solid-svg-icons'
+
+export const cardsWithActived:cardTypeC[] = [
+    {
+        movie:'cars',
+        icon:faBolt,
+        active:false
+    },
+    {
+        movie:'cars',
+        icon:faCar,
+        active:false
+    },
+    {
+        movie:'cars',
+        icon:faTrophy,
+        active:false
+    },
+    {
+        movie:'spiderman',
+        icon:faSpider,
+        active:false
+    },
+    {
+        movie:'spiderman',
+        icon:faPerson,
+        active:false
+    },
+    {
+        movie:'spiderman',
+        icon:faAtom,
+        active:false
+    },
+    {
+        movie:'harry potter',
+        icon:faGlasses,
+        active:false
+    },
+    {
+        movie:'harry potter',
+        icon:faWandMagic,
+        active:false
+    },
+    {
+        movie:'harry potter',
+        icon:faBookQuran,
+        active:false
+    },
+    {
+        movie:'up',
+        icon:faHome,
+        active:false
+    },
+    {
+        movie:'up',
+        icon:faCircleUp,
+        active:false
+    },
+    {
+        movie:'up',
+        icon:faCloud,
+        active:false
+    },
+    {
+        movie:'nemo',
+        icon:faSearch,
+        active:false
+    },
+    {
+        movie:'nemo',
+        icon:faFish,
+        active:false
+    },
+    {
+        movie:'nemo',
+        icon:faWater,
+        active:false
+    },
+    {
+        movie:'camp rock',
+        icon:faGuitar,
+        active:false
+    },
+    {
+        movie:'camp rock',
+        icon:faHandPeace,
+        active:false
+    },
+    {
+        movie:'camp rock',
+        icon:faSchool,
+        active:false
+    },
+    {
+        movie:'el lobo de wall street',
+        icon:faMoneyBillTrendUp,
+        active:false
+    },
+    {
+        movie:'el lobo de wall street',
+        icon:faDollarSign,
+        active:false
+    },
+    {
+        movie:'el lobo de wall street',
+        icon:faDog,
+        active:false
+    },
+    {
+        movie:'lluvia de hamburguesa',
+        icon:faUtensils,
+        active:false
+    },
+    {
+        movie:'lluvia de hamburguesa',
+        icon:faBurger,
+        active:false
+    },
+    {
+        movie:'lluvia de hamburguesa',
+        icon:faCloudRain,
+        active:false
+    },
+    
+]
+
 
 export const cards:cardType[] = [
     {

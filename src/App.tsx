@@ -3,7 +3,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import './App.css'
 import Header from './components/Header'
 import { cards as CardsCurrent, generatePlayPC, generateRandomCards, isValuesSuccess, cardsI } from './helpers/data';
-import { cardType, playerType } from './types';
+import { cardType, playerType, validateProps } from './types';
 import Players from './components/Players';
 import Modal from './components/Modal'
 import Card from './components/Card';
@@ -112,9 +112,18 @@ function App() {
   }, [cardAnswer, v1, v2, v3])
 
 
-  const verifyIndex = (index: number) => {
-    if (cardAnswer.findIndex(cardAns => cardAns.movie === cards[index].movie) !== -1) return true
-    return [v1, v2, v3].includes(index)
+  const verifyIndex = (index: number):validateProps => {
+    const indexCurrent =  cardAnswer.findIndex(cardAns => cardAns.movie === cards[index].movie)
+    
+    if (indexCurrent !== -1) return {
+      name:'completed',
+      isActive: true
+    } 
+
+    return {
+      name:'pending',
+      isActive: [v1, v2, v3].includes(index)
+    }
   }
 
 
