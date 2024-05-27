@@ -2,7 +2,7 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core"
 
 
 export type moviesType = 'rey leon' | 'cars' | 'spiderman' | 'nemo' | 'harry potter' | 'up' | 'camp rock' | 'el lobo de wall street' | 'lluvia de hamburguesa' |''
-export type playerType =  1 | 0 | null
+export type playerType =  1 | 0 
 
 export interface cardType {
     movie: moviesType,
@@ -20,4 +20,4 @@ export interface cardTypeC extends cardType{
 export interface validateProps {
     name:'completed' | 'pending',
     isActive: boolean
-  } 
+} 

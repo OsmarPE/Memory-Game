@@ -128,6 +128,8 @@ export const cardsWithActived:cardTypeC[] = [
     
 ]
 
+console.log(cardsWithActived[0].movie);
+
 
 export const cards:cardType[] = [
     {

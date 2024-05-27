@@ -41,5 +41,5 @@
     @apply bg-purpleMain200;
 }
 .card.completed{
-    @apply opacity-40;
+    @apply opacity-30;
 }
